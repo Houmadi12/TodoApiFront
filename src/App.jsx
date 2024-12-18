@@ -8,7 +8,7 @@ function App() {
 
   // Methode pour récupèrer tous les books
   const getFormations = () => {
-    axios.get('http://localhost:3000/books')
+    axios.get('https://todolistapiback-2.onrender.com/books')
       .then(res => {
         setBooks(res.data);
       })
@@ -19,7 +19,7 @@ function App() {
 
   // Methode pour récupèrer un book
   const getFormation = (id) => {
-    axios.get(`http://localhost:3000/books/${id}`)
+    axios.get(`https://todolistapiback-2.onrender.com/books/${id}`)
       .then(res => {
         setDetailBook(res.data);
       })
@@ -31,7 +31,7 @@ function App() {
   // Méthode pour ajouter une formation
   const addFormation = (newBook) => {
     axios
-      .post('http://localhost:3000/books', newBook)
+      .post('https://todolistapiback-2.onrender.com/books', newBook)
       .then((res) => {
         console.log("Formation ajoutée :", res.data);
         // Rafraîchir les formations après ajout
@@ -45,7 +45,7 @@ function App() {
   // Méthode pour mettre à jour les données
   const editFormation = async (id, updatedFormation) => {
     try {
-      const response = await axios.put(`http://localhost:3000/books/${id}`, updatedFormation);
+      const response = await axios.put(`https://todolistapiback-2.onrender.com/books/${id}`, updatedFormation);
       getFormations();
       console.log("mise à jour avec succès :", response.data);
     } catch (error) {
@@ -56,13 +56,15 @@ function App() {
     // Méthode de suppression d'une formation
     const deletFormation = async (id) => {
       try {
-        const response = await axios.delete(`http://localhost:3000/books/${id}`);
+        const response = await axios.delete(`https://todolistapiback-2.onrender.com/books/${id}`);
         console.log('Ressource supprimée avec succès:', response.data);
         getFormations();
       } catch (error) {
         console.error('Erreur lors de la suppression:', error);
+        console.log("erreur")
       }
     };
+
 
   useEffect(() => {
     getFormations();
